@@ -15,6 +15,7 @@
 		DE2AC7412B78FBFA0027B9C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE2AC73F2B78FBFA0027B9C0 /* LaunchScreen.storyboard */; };
 		DE2AC74F2B78FC180027B9C0 /* QuizAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2AC74E2B78FC180027B9C0 /* QuizAppTests.swift */; };
 		DE2AC7562B78FC260027B9C0 /* FlowTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2AC7552B78FC260027B9C0 /* FlowTest.swift */; };
+		DE2AC7582B79EEFE0027B9C0 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2AC7572B79EEFE0027B9C0 /* Flow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 		DE2AC74C2B78FC180027B9C0 /* QuizAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuizAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE2AC74E2B78FC180027B9C0 /* QuizAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizAppTests.swift; sourceTree = "<group>"; };
 		DE2AC7552B78FC260027B9C0 /* FlowTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowTest.swift; sourceTree = "<group>"; };
+		DE2AC7572B79EEFE0027B9C0 /* Flow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 				DE2AC73D2B78FBFA0027B9C0 /* Assets.xcassets */,
 				DE2AC73F2B78FBFA0027B9C0 /* LaunchScreen.storyboard */,
 				DE2AC7422B78FBFA0027B9C0 /* Info.plist */,
+				DE2AC7572B79EEFE0027B9C0 /* Flow.swift */,
 			);
 			path = QuizApp;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE2AC7392B78FBF80027B9C0 /* ViewController.swift in Sources */,
+				DE2AC7582B79EEFE0027B9C0 /* Flow.swift in Sources */,
 				DE2AC7352B78FBF80027B9C0 /* AppDelegate.swift in Sources */,
 				DE2AC7372B78FBF80027B9C0 /* SceneDelegate.swift in Sources */,
 			);

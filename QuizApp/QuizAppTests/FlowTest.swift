@@ -6,30 +6,62 @@
 //
 
 import XCTest
+@testable import QuizApp
 
 final class FlowTest: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+  
+  func test_start_withNoQuestions_doesNotRouteToQuestion() {
+    let router = RouterSpy()
+    let sut = Flow(questions: [], router: router)
+    
+    sut.start()
+    
+    XCTAssertEqual(router.routedQuestionCount, 0)
+  }
+    
+  func test_start_withOneQuestions_routesToQuestion() {
+    let router = RouterSpy()
+    let sut = Flow(questions: ["Q1"], router: router)
+    
+    sut.start()
+    
+    XCTAssertEqual(router.routedQuestionCount, 1)
+  }
+  
+  func test_start_withOneQuestions_routesToCorrectQuestion() {
+    let router = RouterSpy()
+    let sut = Flow(questions: ["Q1"], router: router)
+    
+    sut.start()
+    
+    XCTAssertEqual(router.routedQuestion, "Q1")
+  }
+  
+  func test_start_withOneQuestions_routesToCorrectQuestion_2() {
+    let router = RouterSpy()
+    let sut = Flow(questions: ["Q2"], router: router)
+    
+    sut.start()
+    
+    XCTAssertEqual(router.routedQuestion, "Q2")
+  }
+  
+  func test_start_withOneQuestions_routesToFirstCorrectQuestion() {
+    let router = RouterSpy()
+    let sut = Flow(questions: ["Q1","Q2"], router: router)
+    
+    sut.start()
+    
+    XCTAssertEqual(router.routedQuestion, "Q1")
+  }
+  
+  class RouterSpy: Router {
+    var routedQuestionCount: Int = 0
+    var routedQuestion: String? = nil
+    
+    func routeTo(question: String) {
+     routedQuestionCount += 1
+      routedQuestion = question
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
+  }
 }
