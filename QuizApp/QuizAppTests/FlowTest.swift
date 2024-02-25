@@ -67,7 +67,32 @@ final class FlowTest: XCTestCase {
   func test_start_withNoQuestions_routesToResult() {
     makeSUT(questions: []).start()
     
-    XCTAssertEqual(router.routedQuestions!, [:])
+    XCTAssertEqual(router.routedResult!, [:])
+  }
+  
+  func test_startAndAnswerFirstQuestion_withTwoQuestions_doesNotRouteResult() {
+    let sut = makeSUT(questions: ["Q1", "Q2"])
+    sut.start()
+    
+    router.answerCallback("A1")
+    
+    XCTAssertNil(router.routedResult)
+  }
+  
+  func test_startAndAnswerFirstAndSecondQuestion_withTwoQuestions_routesToResult() {
+    let sut = makeSUT(questions: ["Q1", "Q2"])
+    sut.start()
+    
+    router.answerCallback("A1")
+    router.answerCallback("A2")
+    
+    XCTAssertEqual(router.routedResult!, ["Q1": "A1", "Q2" : "A2"])
+  }
+  
+  func test_startWithOneQuestion_doesNotRouteToResult() {
+    makeSUT(questions: ["Q1"]).start()
+    
+    XCTAssertNil(router.routedResult)
   }
   
   // MARK: - Helper
@@ -87,7 +112,7 @@ final class FlowTest: XCTestCase {
     }
     
     func routeTo(result: [String : String]) {
-      
+      routedResult = result
     }
   }
 }
