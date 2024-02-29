@@ -67,7 +67,7 @@ final class FlowTest: XCTestCase {
   func test_start_withNoQuestions_routesToResult() {
     makeSUT(questions: []).start()
     
-    XCTAssertEqual(router.routedResult!, [:])
+    XCTAssertEqual(router.routedResult!.answers, [:])
   }
   
   func test_startAndAnswerFirstQuestion_withTwoQuestions_doesNotRouteResult() {
@@ -86,7 +86,7 @@ final class FlowTest: XCTestCase {
     router.answerCallback("A1")
     router.answerCallback("A2")
     
-    XCTAssertEqual(router.routedResult!, ["Q1": "A1", "Q2" : "A2"])
+    XCTAssertEqual(router.routedResult!.answers, ["Q1": "A1", "Q2" : "A2"])
   }
   
   func test_startWithOneQuestion_doesNotRouteToResult() {
@@ -95,23 +95,46 @@ final class FlowTest: XCTestCase {
     XCTAssertNil(router.routedResult)
   }
   
+  func test_startAndAnswerFirstAndSecondQuestion_withTwoQuestions_scores() {
+    let sut = makeSUT(questions: ["Q1", "Q2"], scoring: { _ in 10 })
+    sut.start()
+    
+    router.answerCallback("A1")
+    router.answerCallback("A2")
+    
+    XCTAssertEqual(router.routedResult!.score, 10)
+  }
+  
+  func test_startAndAnswerFirstAndSecondQuestion_withTwoQuestions_scoresWithRightAnswers() {
+    let sut = makeSUT(questions: ["Q1", "Q2"], scoring: { _ in 20 })
+    sut.start()
+    
+    router.answerCallback("A1")
+    router.answerCallback("A2")
+    
+    XCTAssertEqual(router.routedResult!.score, 20)
+  }
+  
   // MARK: - Helper
   
-  func makeSUT(questions: [String]) -> Flow<String, String, RouterSpy> {
-    return Flow(questions: questions, router: router)
+  func makeSUT(
+    questions: [String],
+    scoring: @escaping ([String: String]) -> Int = { _ in 0 }
+  ) -> Flow<String, String, RouterSpy> {
+    return Flow(questions: questions, router: router, scoring: scoring)
   }
   
   class RouterSpy: Router {
     var routedQuestions: [String] = []
     var answerCallback: ((String) -> Void) = { _ in }
-    var routedResult: [String: String]? = nil
+    var routedResult: Result<String, String>? = nil
     
     func routeTo(question: String, answerCallback: @escaping (String) -> Void) {
       routedQuestions.append(question)
       self.answerCallback = answerCallback
     }
     
-    func routeTo(result: [String : String]) {
+    func routeTo(result: QuizApp.Result<String, String>) {
       routedResult = result
     }
   }
