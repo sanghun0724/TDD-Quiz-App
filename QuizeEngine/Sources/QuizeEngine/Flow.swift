@@ -29,7 +29,6 @@ class Flow<Question: Hashable, Answer, R: Router> where R.Question == Question, 
   
   private func nextCallBack(from question: Question) -> (Answer) -> Void {
     return { [weak self] answer in
-      print("shlee \(answer)")
       return self!.routeNext(question, answer)
     }
   }
@@ -49,6 +48,6 @@ class Flow<Question: Hashable, Answer, R: Router> where R.Question == Question, 
   }
   
   private func result() -> Result<Question, Answer> {
-    return Result(answers: answers, score: scoring(answers))
+    return Result(answers, score: scoring(answers))
   }
 }

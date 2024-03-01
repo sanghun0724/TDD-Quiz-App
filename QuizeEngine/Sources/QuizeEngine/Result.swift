@@ -7,7 +7,20 @@
 
 import Foundation
 
-public struct Result<Question: Hashable, Answer> {
-  let answers: [Question: Answer]
-  let score: Int
+public struct Result<Question: Hashable, Answer>: Hashable {
+  public var answers: [Question: Answer]
+  public var score: Int
+  
+  public init(_ answers: [Question: Answer], score: Int) {
+    self.answers = answers
+    self.score = score
+  }
+  
+  public var hashValue: Int {
+    return 1
+  }
+  
+  public static func == (lhs: QuizeEngine.Result<Question, Answer>, rhs: QuizeEngine.Result<Question, Answer>) -> Bool {
+    return lhs.score == rhs.score
+  }
 }
