@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import QuizApp
+@testable import QuizeEngine
 
 final class FlowTest: XCTestCase {
   
@@ -135,7 +135,7 @@ class RouterSpy: Router {
     self.answerCallback = answerCallback
   }
   
-  func routeTo(result: QuizApp.Result<String, String>) {
+  func routeTo(result: Result<String, String>) {
     routedResult = result
   }
 }
