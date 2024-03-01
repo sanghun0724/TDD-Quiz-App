@@ -123,19 +123,19 @@ final class FlowTest: XCTestCase {
   ) -> Flow<String, String, RouterSpy> {
     return Flow(questions: questions, router: router, scoring: scoring)
   }
+}
+
+class RouterSpy: Router {
+  var routedQuestions: [String] = []
+  var answerCallback: ((String) -> Void) = { _ in }
+  var routedResult: Result<String, String>? = nil
   
-  class RouterSpy: Router {
-    var routedQuestions: [String] = []
-    var answerCallback: ((String) -> Void) = { _ in }
-    var routedResult: Result<String, String>? = nil
-    
-    func routeTo(question: String, answerCallback: @escaping (String) -> Void) {
-      routedQuestions.append(question)
-      self.answerCallback = answerCallback
-    }
-    
-    func routeTo(result: QuizApp.Result<String, String>) {
-      routedResult = result
-    }
+  func routeTo(question: String, answerCallback: @escaping (String) -> Void) {
+    routedQuestions.append(question)
+    self.answerCallback = answerCallback
+  }
+  
+  func routeTo(result: QuizApp.Result<String, String>) {
+    routedResult = result
   }
 }
