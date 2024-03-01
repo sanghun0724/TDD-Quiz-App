@@ -22,9 +22,9 @@
 		DE44B0982B8DE6D100EAF9C2 /* ResultsViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE44B0972B8DE6D100EAF9C2 /* ResultsViewControllerTest.swift */; };
 		DE44B09A2B8E11A400EAF9C2 /* TableViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE44B0992B8E11A400EAF9C2 /* TableViewHelper.swift */; };
 		DE44B09C2B8E1E2D00EAF9C2 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE44B09B2B8E1E2D00EAF9C2 /* UITableViewExtension.swift */; };
-		DE4CD6A12B9155D400D21852 /* NavigationControllerRouterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4CD6A02B9155D400D21852 /* NavigationControllerRouterTest.swift */; };
 		DE4CD6A32B91567700D21852 /* NavigationControllerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4CD6A22B91567700D21852 /* NavigationControllerRouter.swift */; };
 		DE4CD6AA2B91595C00D21852 /* QuizeEngine in Frameworks */ = {isa = PBXBuildFile; productRef = DE4CD6A92B91595C00D21852 /* QuizeEngine */; };
+		DE4CD6AC2B915AFF00D21852 /* NavigationControllerRouterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4CD6AB2B915AFF00D21852 /* NavigationControllerRouterTest.swift */; };
 		DE8CDDA52B8B15B000148A09 /* QuestionViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8CDDA42B8B15B000148A09 /* QuestionViewControllerTest.swift */; };
 		DE8CDDA82B8B177800148A09 /* QuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE8CDDA72B8B177800148A09 /* QuestionViewController.xib */; };
 /* End PBXBuildFile section */
@@ -58,8 +58,8 @@
 		DE44B0972B8DE6D100EAF9C2 /* ResultsViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewControllerTest.swift; sourceTree = "<group>"; };
 		DE44B0992B8E11A400EAF9C2 /* TableViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHelper.swift; sourceTree = "<group>"; };
 		DE44B09B2B8E1E2D00EAF9C2 /* UITableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
-		DE4CD6A02B9155D400D21852 /* NavigationControllerRouterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerRouterTest.swift; sourceTree = "<group>"; };
 		DE4CD6A22B91567700D21852 /* NavigationControllerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerRouter.swift; sourceTree = "<group>"; };
+		DE4CD6AB2B915AFF00D21852 /* NavigationControllerRouterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerRouterTest.swift; sourceTree = "<group>"; };
 		DE8CDDA42B8B15B000148A09 /* QuestionViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewControllerTest.swift; sourceTree = "<group>"; };
 		DE8CDDA72B8B177800148A09 /* QuestionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,7 +125,7 @@
 				DE8CDDA42B8B15B000148A09 /* QuestionViewControllerTest.swift */,
 				DE44B0972B8DE6D100EAF9C2 /* ResultsViewControllerTest.swift */,
 				DE44B0992B8E11A400EAF9C2 /* TableViewHelper.swift */,
-				DE4CD6A02B9155D400D21852 /* NavigationControllerRouterTest.swift */,
+				DE4CD6AB2B915AFF00D21852 /* NavigationControllerRouterTest.swift */,
 			);
 			path = QuizAppTests;
 			sourceTree = "<group>";
@@ -293,8 +293,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE2AC74F2B78FC180027B9C0 /* QuizAppTests.swift in Sources */,
+				DE4CD6AC2B915AFF00D21852 /* NavigationControllerRouterTest.swift in Sources */,
 				DE8CDDA52B8B15B000148A09 /* QuestionViewControllerTest.swift in Sources */,
-				DE4CD6A12B9155D400D21852 /* NavigationControllerRouterTest.swift in Sources */,
 				DE44B09A2B8E11A400EAF9C2 /* TableViewHelper.swift in Sources */,
 				DE44B0982B8DE6D100EAF9C2 /* ResultsViewControllerTest.swift in Sources */,
 			);
