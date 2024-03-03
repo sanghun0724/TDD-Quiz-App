@@ -29,7 +29,7 @@ public protocol Router {
 // Steps (commit)
 // create new Interface(Protocol)
 // add deprecated message (Rotuer Protocol, startGame functionm, Game class)
-// move deprecated components to a designated file (Rotuer Protocol, startGame functionm, Game class)
+// move deprecated components to a designated file (Rotuer Protocol, startGame functionm, Game class, QuizDelegateToRouterAdapter class)
 // what should we do with the scoring function? (it's a leak detail)
 // remove Hashable constraint from Question and make the result type generic
 //
