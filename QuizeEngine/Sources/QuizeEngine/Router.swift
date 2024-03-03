@@ -27,7 +27,9 @@ public protocol Router {
 
 // change router protocol without brake
 // Steps (commit)
-// add deprecated message router protocol
-// create new protocol
+// create new Interface(Protocol)
+// add deprecated message (Rotuer Protocol, startGame functionm, Game class)
+// move deprecated components to a designated file (Rotuer Protocol, startGame functionm, Game class)
+// what should we do with the scoring function? (it's a leak detail)
 // remove Hashable constraint from Question and make the result type generic
 //
