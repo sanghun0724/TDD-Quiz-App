@@ -10,6 +10,7 @@ import QuizeEngine
 
 struct ResultsPresenter {
   let result: Result<Question<String>, [String]>
+  let questions: [Question<String>]
   var correctAnswers: Dictionary<Question<String>, [String]>
   
   var summary: String {
@@ -17,8 +18,9 @@ struct ResultsPresenter {
   }
   
   var presentableAnswers: [PresentableAnswer] {
-    return result.answers.map { (question, userAnswer) in
-      guard  let correctAnswer = correctAnswers[question] else {
+    return questions.map { (question) in
+      guard let correctAnswer = correctAnswers[question],
+            let userAnswer = result.answers[question] else {
         fatalError("Coudn't find correct answer for question:\(question)")
       }
       
@@ -42,6 +44,6 @@ struct ResultsPresenter {
   }
   
   private func formattedWrongAnswer(_ userAnswer: [String], _ correctAnswer: [String]) -> String? {
-    return correctAnswer == userAnswer ? nil : userAnswer.joined(separator: ", ")
+    return correctAnswer == userAnswer ? nil : formattedAnswer(userAnswer)
   }
 }
