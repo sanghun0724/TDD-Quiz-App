@@ -11,6 +11,7 @@ import QuizeEngine
 struct ResultsPresenter {
   let result: Result<Question<String>, [String]>
   let questions: [Question<String>]
+  let options: Dictionary<Question<String>, [String]>
   var correctAnswers: Dictionary<Question<String>, [String]>
   
   var summary: String {
@@ -34,9 +35,14 @@ struct ResultsPresenter {
       return PresentableAnswer(
         question: value,
         answer: formattedAnswer(correctAnswer),
-        wrongAnswer: formattedWrongAnswer(userAnswer, correctAnswer)
+        wrongAnswer: formattedWrongAnswer(ordered(userAnswer, for: question), ordered(correctAnswer, for: question))
       )
     }
+  }
+  
+  private func ordered(_ answer: [String], for question: Question<String>) -> [String] {
+    guard let option = options[question] else { return [] }
+    return option.filter { answer.contains($0) }
   }
   
   private func formattedAnswer(_ answer: [String]) -> String {
