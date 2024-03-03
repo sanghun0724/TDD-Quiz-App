@@ -22,15 +22,23 @@ final class QuestionViewControllerTest: XCTestCase {
   }
   
   func test_viewDidLoad_renderOptionsText() {
-    let sut = makeSUT(options: ["A1", "A2"])
+    let sut = makeSUT(options: ["A1", "A2"], allowsMultipleSelection: false)
     
     XCTAssertEqual(sut.tableView.title(at: 0), "A1")
     XCTAssertEqual(sut.tableView.title(at: 1), "A2")
   }
   
+  func test_viewDidLoad_withSingleSelection_configuresTableView() {
+    XCTAssertFalse(makeSUT(options: ["A1", "A2"], allowsMultipleSelection: false).tableView.allowsMultipleSelection)
+  }
+  
+  func test_viewDidLoad_withMutipleSelection_configuresTableView() {
+    XCTAssertTrue(makeSUT(options: ["A1", "A2"], allowsMultipleSelection: true).tableView.allowsMultipleSelection)
+  }
+  
   func test_optionSelected_withSingleSelection_notifiesDelegateWithLastSelection() {
     var receivedAnswer = [String]()
-    let sut = makeSUT(options: ["A1", "A2"]) { receivedAnswer = $0 }
+    let sut = makeSUT(options: ["A1", "A2"], allowsMultipleSelection: false) { receivedAnswer = $0 }
     
     sut.tableView.select(row: 0)
     XCTAssertEqual(receivedAnswer, ["A1"])
@@ -53,8 +61,7 @@ final class QuestionViewControllerTest: XCTestCase {
   
   func test_optionSelected_withMultipleSelectionEnabled_notifiesDelegateWithLastSelection() {
     var receivedAnswer = [String]()
-    let sut = makeSUT(options: ["A1", "A2"]) { receivedAnswer = $0 }
-    sut.tableView.allowsMultipleSelection = true
+    let sut = makeSUT(options: ["A1", "A2"], allowsMultipleSelection: true) { receivedAnswer = $0 }
     
     sut.tableView.select(row: 0)
     XCTAssertEqual(receivedAnswer, ["A1"])
@@ -65,8 +72,7 @@ final class QuestionViewControllerTest: XCTestCase {
   
   func test_optionDeSelected_withMultipleSelectionEnabled_notifiesDelegate() {
     var receivedAnswer = [String]()
-    let sut = makeSUT(options: ["A1", "A2"]) { receivedAnswer = $0 }
-    sut.tableView.allowsMultipleSelection = true
+    let sut = makeSUT(options: ["A1", "A2"], allowsMultipleSelection: true) { receivedAnswer = $0 }
     
     sut.tableView.select(row: 0)
     XCTAssertEqual(receivedAnswer, ["A1"])
@@ -78,11 +84,13 @@ final class QuestionViewControllerTest: XCTestCase {
   func makeSUT(
     question: String = "",
     options: [String] = [],
+    allowsMultipleSelection: Bool = false,
     selection: @escaping ([String]) -> Void = {_ in}) -> QuestionViewController
   {
-    let questionType = Question.singleAnswer(question)
-    let factory = iOSViewControllerFactory(for: [], options: [questionType : options])
-    let sut = factory.questionViewController(for: questionType, answerCallback: selection) as! QuestionViewController
+//    let questionType = Question.singleAnswer(question)
+//    let factory = iOSViewControllerFactory(for: [], options: [questionType : options])
+//    let sut = factory.questionViewController(for: questionType, answerCallback: selection) as! QuestionViewController
+    let sut = QuestionViewController(question: question, options: options, allowsMultipleSelection: allowsMultipleSelection, selection: selection)
     sut.loadViewIfNeeded()
     return sut
   }

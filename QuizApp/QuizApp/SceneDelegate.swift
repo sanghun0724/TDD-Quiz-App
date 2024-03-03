@@ -15,7 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
     guard let scene = (scene as? UIWindowScene) else { return }
-    let viewController = QuestionViewController(question: "A question?", options: ["Option 1", "Option 2"]) {
+    let viewController = QuestionViewController(question: "A question?", options: ["Option 1", "Option 2"], allowsMultipleSelection: false) {
       print($0)
     }
     _ = viewController.view
