@@ -8,20 +8,6 @@
 import UIKit
 import QuizeEngine
 
-enum Question<T: Hashable>: Hashable {
-  case singleAnswer(T)
-  case multipleAnswer(T)
-  
-  var hashValue: Int {
-    switch self {
-    case .singleAnswer(let value):
-      return value.hashValue
-    case .multipleAnswer(let value):
-      return value.hashValue
-    }
-  }
-}
-
 class NavigationControllerRouter: Router {
   private let navigationController: UINavigationController
   private let factory: ViewControllerFactory
@@ -57,7 +43,7 @@ class NavigationControllerRouter: Router {
   }
 }
 
-private class SubmitButtonController {
+private class SubmitButtonController: NSObject {
   let button: UIBarButtonItem
   let callback: ([String]) -> Void
   private var model: [String] = []
@@ -65,12 +51,14 @@ private class SubmitButtonController {
   init(_ button: UIBarButtonItem, _ callback: @escaping ([String]) -> Void) {
     self.button = button
     self.callback = callback
+    super.init()
     self.setUp()
   }
   
   private func setUp() {
     button.target = self
     button.action = #selector(fireCallback)
+    updateButtonState()
   }
   
   func update(_ model: [String]) {

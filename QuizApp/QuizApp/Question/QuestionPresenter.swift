@@ -5,7 +5,7 @@
 //  Created by 이상헌 on 3/3/24.
 //
 
-import Foundation
+import QuizeEngine
 
 struct QuestionPresenter {
   let questions: [Question<String>]
