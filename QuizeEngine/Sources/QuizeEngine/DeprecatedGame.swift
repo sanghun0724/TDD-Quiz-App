@@ -7,14 +7,15 @@
 
 import Foundation
 
-// naming flowDelegate 탈락 -> flow는 게임엔진의 internal 구현임. (🌟 leak implementation)
-public protocol QuizDelegate {
+@available(*, deprecated)
+public protocol Router {
   associatedtype Question: Hashable
   associatedtype Answer
   
-  func handle(question: Question, answerCallback: @escaping (Answer) -> Void)
-  func handle(result: Result<Question, Answer>)
+  func routeTo(question: Question, answerCallback: @escaping (Answer) -> Void)
+  func routeTo(result: Result<Question, Answer>)
 }
+
 
 @available(*, deprecated)
 public class Game<Question, Answer, R: Router> {
@@ -46,11 +47,5 @@ private class QuizDelegateToRouterAdapter<R: Router>: QuizDelegate { // wrapper
   
   func handle(result: Result<R.Question, R.Answer>) {
     router.routeTo(result: result)
-  }
-}
-
-private func scoring<Question: Hashable, Answer: Equatable>(_ answers: [Question : Answer], correctAnswers: [Question: Answer]) -> Int {
-  return answers.reduce(0) { (score, tuple) in
-    return score + (correctAnswers[tuple.key] == tuple.value ? 1 : 0)
   }
 }

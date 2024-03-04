@@ -62,4 +62,4 @@ class Flow<Delegate: QuizDelegate>{
 // move deprecated components to a designated file (Rotuer Protocol, startGame functionm, Game class, QuizDelegateToRouterAdapter class)
 // what should we do with the scoring function? (it's a leak detail)
 // remove Hashable constraint from Question and make the result type generic
-//
+// remove testable import from QuizTest
