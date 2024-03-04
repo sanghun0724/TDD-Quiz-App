@@ -63,3 +63,5 @@ class Flow<Delegate: QuizDelegate>{
 // what should we do with the scoring function? (it's a leak detail)
 // remove Hashable constraint from Question and make the result type generic
 // remove testable import from QuizTest
+// deprecate the Result type
+// Breakdown protocols into Delegate/Datasource

@@ -7,6 +7,7 @@
 
 import Foundation
 
+@available(*, deprecated)
 public struct Result<Question: Hashable, Answer>: Hashable {
   public var answers: [Question: Answer]
   public var score: Int
