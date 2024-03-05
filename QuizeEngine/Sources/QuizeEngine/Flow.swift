@@ -24,13 +24,13 @@ class Flow<Delegate: QuizDelegate>{
   
   func start() {
     if let firstQuestion = questions.first {
-      delegate.handle(question: firstQuestion, answerCallback: nextCallBack(from: firstQuestion))
+      delegate.answer(for: firstQuestion, completion: answer(from: firstQuestion))
     } else {
       delegate.handle(result: result())
     }
   }
   
-  private func nextCallBack(from question: Question) -> (Answer) -> Void {
+  private func answer(from question: Question) -> (Answer) -> Void {
     return { [weak self] answer in
       return self!.delegateNextHandling(question, answer)
     }
@@ -43,7 +43,7 @@ class Flow<Delegate: QuizDelegate>{
       let nextQuestionIndex = currentQuestionIndex + 1
       if nextQuestionIndex < self.questions.count {
         let nextQuestion = self.questions[currentQuestionIndex + 1]
-        delegate.handle(question: nextQuestion, answerCallback: self.nextCallBack(from: nextQuestion))
+        delegate.answer(for: nextQuestion, completion: self.answer(from: nextQuestion))
       } else {
         self.delegate.handle(result: result())
       }
@@ -65,3 +65,4 @@ class Flow<Delegate: QuizDelegate>{
 // remove testable import from QuizTest
 // deprecate the Result type
 // Breakdown protocols into Delegate/Datasource
+// Remove didCompleteQuiz default implementation
